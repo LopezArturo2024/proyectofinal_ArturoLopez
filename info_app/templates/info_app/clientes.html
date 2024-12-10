@@ -1,0 +1,44 @@
+{% extends 'info_app/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Clientes - info_app 
+{% endblock title %}
+
+{% block content %}
+<br>
+<h1>Clientes registrados</h1>
+<br>
+<h5 class="text-center mt-2">Buscar cliente</h5>
+<!-- Formulario de búsqueda -->
+<div class="d-flex flex-column align-items-center mb-2">
+<form action="" method="GET">
+<input type="text" name="q" placeholder="Buscar..." required>
+<button type="submit">Buscar</button>
+</form><br>
+
+<div class="container"></div>
+    <table class="text-center mt-2 table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #495057; color: #000f; text-align: center;">
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">ID</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Cliente</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Email</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Segmento</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in cliente %}
+            <tr style="background-color: #ced4da; color: #000; text-align: center;">
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.id }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.nombre }} {{ i.apellido }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.email }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.segmento }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

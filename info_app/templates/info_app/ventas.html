@@ -1,0 +1,47 @@
+{% extends 'info_app/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Ventas - info_app 
+{% endblock title %}
+
+{% block content %}
+<br>
+<h1>Ordenes de venta</h1>
+<br>
+<h5 class="text-center mt-2">Buscar orden de venta</h5>
+<!-- Formulario de búsqueda -->
+<div class="d-flex flex-column align-items-center mb-2">
+<form action="" method="GET">
+<input type="text" name="q" placeholder="Buscar..." required>
+<button type="submit">Buscar</button>
+</form>
+<br>
+
+<div class="container"></div>
+    <table class="text-center mt-2 table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #495057; color: #000f; text-align: center;">
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">ID</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Fecha de compra</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Cliente</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Empleado</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in venta %}
+            <tr style="background-color: #ced4da; color: #000; text-align: center;">
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.id }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.fecha_venta}}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.cliente }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.empleado }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
