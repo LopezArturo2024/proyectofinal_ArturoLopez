@@ -57,7 +57,12 @@ Clientes - info_app
             {% endfor %}
         </tbody>
     </table>
+    
+    {% if user.is_staff %}
     <a class="btn btn-primary" href="{% url 'formulario_cliente' %}">Agregar nuevo cliente</a>
+    {% endif %}
+        
+    
 </div>
 
 

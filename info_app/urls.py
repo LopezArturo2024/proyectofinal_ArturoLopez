@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from info_app.views import clientes,empleados,productos,ventas,inventario,inicio,forms_cliente,forms_empleado,forms_producto,forms_venta,forms_inventario,sobre_mi,user_create,user_login,user_logout,ver_perfil,edit_profile,edit_password,eliminar_cliente,actualizar_cliente,ver_cliente,ver_empleado,actualizar_empleado,eliminar_empleado,ver_productos,eliminar_producto,actualizar_producto
+from info_app.views import clientes,empleados,productos,ventas,inventario,inicio,forms_cliente,forms_empleado,forms_producto,forms_venta,forms_inventario,sobre_mi,user_create,user_login,user_logout,ver_perfil,edit_profile,edit_password,eliminar_cliente,actualizar_cliente,ver_cliente,ver_empleado,actualizar_empleado,eliminar_empleado,ver_productos,eliminar_producto,actualizar_producto,ver_venta,actualizar_venta,eliminar_venta,ver_inventario,eliminar_inventario,actualizar_inventario
 
 urlpatterns = [
     path('portada/',inicio,name="inicio"),
@@ -40,5 +40,15 @@ urlpatterns = [
     #CRUD Productos
     path('ver_producto/<int:id>',ver_productos,name="ver_producto"),
     path('eliminar_producto/<int:id>',eliminar_producto,name="eliminar_producto"),
-    path('editar_producto/<int:id>',actualizar_producto,name="editar_producto")
+    path('editar_producto/<int:id>',actualizar_producto,name="editar_producto"),
+
+    #CRUD Ventas
+    path('ver_venta/<int:id>',ver_venta,name="ver_venta"),
+    path('eliminar_venta/<int:id>',eliminar_venta,name="eliminar_venta"),
+    path('editar_venta/<int:id>',actualizar_venta,name="editar_venta"),
+
+    #CRUD Inventario
+    path('ver_inventario/<int:id>',ver_inventario,name="ver_inventario"),
+    path('eliminar_inventario/<int:id>',eliminar_inventario,name="eliminar_inventario"),
+    path('editar_inventario/<int:id>',actualizar_inventario,name="editar_inventario")
 ]

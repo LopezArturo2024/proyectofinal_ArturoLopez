@@ -15,14 +15,8 @@ from info_app.forms import ClienteForms,EmpleadoForms,ProductoForms,VentaForms,I
 def inicio(request):
     return render(request,"info_app/portada.html")
 
-
-
-
 def sobre_mi(request):
     return render(request,"info_app/about.html")
-
-
-
 
 @login_required(login_url='login')
 def clientes(request):
@@ -37,10 +31,7 @@ def clientes(request):
     contexto={"cliente":cliente}
     return render(request,"info_app/clientes.html",contexto)
 
-
-
-
-
+@login_required(login_url='login')
 def empleados(request):
     query=request.GET.get("q")
 
@@ -54,8 +45,7 @@ def empleados(request):
     return render(request,"info_app/empleados.html",contexto)
     
 
-
-
+@login_required(login_url='login')
 def productos(request):
     query=request.GET.get("q")
 
@@ -70,7 +60,7 @@ def productos(request):
 
 
 
-
+@login_required(login_url='login')
 def ventas(request):
     query=request.GET.get("q")
 
@@ -85,8 +75,7 @@ def ventas(request):
 
 
 
-
-
+@login_required(login_url='login')
 def inventario(request):
     query=request.GET.get("q")
 
@@ -137,7 +126,7 @@ def forms_empleado(request):
 
 
 
-
+@login_required(login_url='login')
 def forms_producto(request):
     if request.method == "POST":
         producto_form=ProductoForms(request.POST)
@@ -145,6 +134,7 @@ def forms_producto(request):
             info_limpia=producto_form.cleaned_data
             producto=Producto(nombre=info_limpia["nombre"],categoria=info_limpia["categoria"],precio=info_limpia["precio"],descripcion=info_limpia["descripcion"])
             producto.save()
+            messages.success(request,f"Se ha creado el producto {producto.nombre} de la categoría {producto.categoria} de forma correcta")
             return redirect("productos")
     else:
         producto_form=ProductoForms()
@@ -153,7 +143,7 @@ def forms_producto(request):
     return render(request,"info_app/forms/productoForms.html",contexto)
 
 
-
+@login_required(login_url='login')
 def forms_venta(request):
     if request.method == "POST":
         venta_form=VentaForms(request.POST)
@@ -161,6 +151,7 @@ def forms_venta(request):
             info_limpia=venta_form.cleaned_data
             venta=Venta(fecha_venta=info_limpia["fecha_venta"],cliente=info_limpia["cliente"],empleado=info_limpia["empleado"],total=info_limpia["total"])
             venta.save()
+            messages.success(request,f"Se ha creado la orden de venta {venta.id} por el empleado {venta.empleado}")
             return redirect("ventas")
     else:
         venta_form=VentaForms()
@@ -170,7 +161,7 @@ def forms_venta(request):
 
 
 
-
+@login_required(login_url='login')
 def forms_inventario(request):
     if request.method == "POST":
         inventario_form=InventarioForms(request.POST)
@@ -178,6 +169,7 @@ def forms_inventario(request):
             info_limpia=inventario_form.cleaned_data
             inventario=Inventario(fecha_inventario=info_limpia["fecha_inventario"],producto=info_limpia["producto"],cantidad=info_limpia["cantidad"])
             inventario.save()
+            messages.success(request,f"Se ha generado el inventario del producto {inventario.producto} y se han agregado {inventario.cantidad} unidades de forma correcta")
             return redirect("inventario")
     else:
         inventario_form=InventarioForms()
@@ -243,7 +235,7 @@ def ver_empleado(request,id):
 
     
 
-#Delete cliente
+#Delete empleado
 @login_required(login_url='login')
 def eliminar_empleado(request,id):
     empleado=Empleado.objects.get(id=id)
@@ -253,7 +245,7 @@ def eliminar_empleado(request,id):
 
 
 
-#Update cliente
+#Update empleado
 @login_required(login_url='login')
 def actualizar_empleado(request,id):
     empleado=Empleado.objects.get(id=id)
@@ -332,29 +324,89 @@ def actualizar_producto(request,id):
 
 
 
+#Ver Ventas
+@login_required(login_url='login')
+def ver_venta(request,id):
+    venta=Venta.objects.get(id=id)
+    return render(request,"info_app/ver_venta.html",{"venta":venta})
+
+    
+
+#Delete Venta
+@login_required(login_url='login')
+def eliminar_venta(request,id):
+    venta=Venta.objects.get(id=id)
+    venta.delete()
+    messages.success(request,f"Se ha eliminado la orden de venta con fecha {venta.fecha_venta} de forma correcta")
+    return redirect('ventas')
+
+
+
+#Update Venta
+@login_required(login_url='login')
+def actualizar_venta(request,id):
+    venta=Venta.objects.get(id=id)
+
+    if request.method == "POST":
+        venta_form=VentaForms(request.POST)
+        if venta_form.is_valid():
+            info_limpia=venta_form.cleaned_data
+            venta.fecha_venta=info_limpia["fecha_venta"]
+            venta.cliente=info_limpia["cliente"]
+            venta.empleado=info_limpia["empleado"]
+            venta.total=info_limpia["total"]
+            venta.save()
+            messages.success(request,f"Se ha actualizado la orden de venta {venta.id} de forma correcta")
+            return redirect('ventas')
+
+    else:
+        venta_form=VentaForms(initial={"fecha_venta":venta.fecha_venta,"cliente":venta.cliente,"empleado":venta.empleado,"total":venta.total})
+        contexto={"forms":venta_form}
+
+    return render(request,"info_app/editar_venta.html",contexto)
 
 
 
 
 
 
+#Ver Inventario
+@login_required(login_url='login')
+def ver_inventario(request,id):
+    inventario=Inventario.objects.get(id=id)
+    return render(request,"info_app/ver_inventario.html",{"inventario":inventario})
 
 
+#Delete Inventario
+@login_required(login_url='login')
+def eliminar_inventario(request,id):
+    inventario=Inventario.objects.get(id=id)
+    inventario.delete()
+    messages.success(request,f"Se ha eliminado el registro del inventario con fecha {inventario.fecha_inventario} de forma correcta")
+    return redirect('inventario')
 
 
+#Update Inventario
+@login_required(login_url='login')
+def actualizar_inventario(request,id):
+    inventario=Inventario.objects.get(id=id)
 
+    if request.method == "POST":
+        inventario_form=InventarioForms(request.POST)
+        if inventario_form.is_valid():
+            info_limpia=inventario_form.cleaned_data
+            inventario.fecha_inventario=info_limpia["fecha_inventario"]
+            inventario.producto=info_limpia["producto"]
+            inventario.cantidad=info_limpia["cantidad"]
+            inventario.save()
+            messages.success(request,f"Se ha actualizado el registro del inventario {inventario.id} con fecha {inventario.fecha_inventario} de forma correcta")
+            return redirect('inventario')
 
+    else:
+        inventario_form=InventarioForms(initial={"fecha_inventario":inventario.fecha_inventario,"producto":inventario.producto,"cantidad":inventario.cantidad})
+        contexto={"forms":inventario_form}
 
-
-
-
-
-
-
-
-
-
-
+    return render(request,"info_app/editar_inventario.html",contexto)
 
 
 

@@ -1,0 +1,24 @@
+{% extends 'info_app/base.html' %}
+
+
+{% block title %}
+Ver Venta - info_app
+{% endblock title %}
+
+{% block content %}
+    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
+        <div class="col-4">
+            <h3> Datos de la orden de venta: </h3><br>
+        </div>
+    </div><br>
+    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
+        <div class="row justify-content-center">
+            <li> La orden de venta {{venta.id}}, se generó en la fecha {{venta.fecha_venta}} </li> 
+                <li>El cliente que realizó la orden fue: {{venta.cliente}} </li> 
+                <li>El empleado que apoyó en la venta fue: {{venta.empleado}} </li>
+        </div>
+    </div><br>
+    <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'ventas' %}">Volver</a>
+        </div>
+{% endblock content %}

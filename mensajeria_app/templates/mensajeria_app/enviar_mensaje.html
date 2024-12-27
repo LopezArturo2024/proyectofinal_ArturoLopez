@@ -1,0 +1,28 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}
+Enviar mensaje - mensajeria_app
+{% endblock title %}
+
+{% block content %}
+<h1>Enviar mensaje</h1>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-4">
+          <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <select name= "destinatario" class="form-select" >
+            <option selected>Selecciona el destinatario</option>
+            {% for i in usuarios %}
+            <option value="{{i.username}}"> {{i.username}} </option>
+            {% endfor %}
+          </select>
+          <textarea name="contenido" class="form-select" ></textarea>
+          <button type="submit" class="btn btn-primary">Enviar mensaje </button>
+        
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

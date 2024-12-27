@@ -1,0 +1,42 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}
+Mostrar mensajes - mensajeria_app
+{% endblock title %}
+
+{% block content %}
+{% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <p class="text-center mt-2 text-success"> {{ message }} </p>
+                {% endfor %}
+            </ul>
+{% endif %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Remitente</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in mensajes %}
+            {% if mensajes%}
+                <tr class="table"></tr>
+                <td>{{i.remitente}}</td>
+                <td>{{i.fecha_envio}}</td>
+                <td><a class="btn btn-primary" href="{% url 'ver_mensaje' i.id %}">Ver mensaje </a>
+                </td>
+            {% else %}
+                <p>No existe mensajes</p>                
+            {% endif %}
+                
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" href="{% url 'enviar_mensaje' %}">Enviar un nuevo mensaje </a>
+
+
+{% endblock content %}

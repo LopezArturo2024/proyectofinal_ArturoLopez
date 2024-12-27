@@ -1,20 +1,19 @@
 {% extends 'info_app/base.html' %}
 
 {% block title %}
-Editar Producto - info_app
+Editar Inventario - info_app
 {% endblock title %}
 
 {% block content %}
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-4">
-          <h2>Editar Producto</h2><br>
-            
+            <h2>Editar Inventario</h2><br>
 
           <form action="" method="POST">
           {% csrf_token %}
           {{ forms.as_p }}
-          <button type="submit" class="btn btn-primary">Editar producto</button>
+          <button type="submit" class="btn btn-primary">Editar inventario</button>
         </form>
         </div>
     </div>

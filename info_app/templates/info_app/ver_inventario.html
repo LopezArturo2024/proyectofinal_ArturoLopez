@@ -1,0 +1,23 @@
+{% extends 'info_app/base.html' %}
+
+
+{% block title %}
+Ver Inventario - info_app
+{% endblock title %}
+
+{% block content %}
+    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
+        <div class="col-4">
+            <h3> Datos del inventario: </h3><br>
+        </div>
+    </div><br>
+    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
+        <div class="row justify-content-center">
+            <li> El producto {{inventario.producto}} tiene actualmente {{inventario.cantidad}} unidades </li> 
+                <li>Este registro se realizó en la fecha {{inventario.fecha_inventario}} </li> 
+        </div>
+    </div><br>
+    <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'inventario' %}">Volver</a>
+        </div>
+{% endblock content %}

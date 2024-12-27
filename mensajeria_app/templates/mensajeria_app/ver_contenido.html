@@ -1,0 +1,17 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}
+Contenido del mensaje - mensajeria_app
+{% endblock title %}
+
+{% block content %}
+<div class="container my-2"></div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <p>El usuario {{contexto.remitente}}, te envió el siguiente mensaje el día {{contexto.fecha_envio}}:</p>
+            <p>{{contexto.contenido}}</p>
+            <a class="btn btn-primary" href="{% url 'mostrar_mensaje' %}">Volver </a> 
+        </div>
+    </div>
+
+{% endblock content %}

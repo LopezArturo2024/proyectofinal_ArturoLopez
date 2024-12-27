@@ -61,25 +61,49 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                             <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                            
                             {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'empleados' %}">Empleados</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}">Productos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'ventas' %}">Ventas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'inventario' %}">Inventario</a><
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Perfil</a>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="{% url 'ver_perfil' %}">Ver perfil</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar perfil</a></li>
-                                  <li><a class="dropdown-item" href="{% url 'editar_password' %}">Cambiar contraseña</a></li>
-                                </ul>
-                            <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                            
+                                {% if user.is_staff %}
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'empleados' %}">Empleados</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}">Productos</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'ventas' %}">Ventas</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'inventario' %}">Inventario</a> </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Perfil</a>
+                                        <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'ver_perfil' %}">Ver perfil</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar perfil</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'editar_password' %}">Cambiar contraseña</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'mostrar_mensaje' %}">Mensajes</a></li>
+                                        </ul>
+                                    <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                            
+                                {% else %}    
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'empleados' %}">Empleados</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}">Productos</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Perfil</a>
+                                        <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'ver_perfil' %}">Ver perfil</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar perfil</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'editar_password' %}">Cambiar contraseña</a></li>
+                                        </ul>
+                                    <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a></li>
+
+                                {% endif %}
+                                
                             {% else %}
                             <li class="nav-item"><a class="btn btn-primary" href="{% url 'usercreate' %}">Registrarse</a></li>
                             <li class="nav-item"><a class="btn btn-primary" href="{% url 'login' %}">Inicia sesión</a></li>                                
                             {% endif %}
+                                
+
                         </ul>
                     </div>
                 </div>

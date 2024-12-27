@@ -57,7 +57,10 @@ Empleados - info_app
             {% endfor %}
         </tbody>
     </table>
+    {% if user.is_staff %}
     <a class="btn btn-primary" href="{% url 'formulario_empleado' %}">Agregar nuevo empleado</a>
+    {% endif %}
+        
 </div>
 
 {% endblock content %}
