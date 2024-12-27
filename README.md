@@ -1,3 +1,6 @@
+Video explicativo Youtube:
+https://youtu.be/HbPNN7ST5ws
+
 Descripcion del programa: 
 --> globastore corresponde a un nombre ficticio de una tienda retaile online que vende productos en distintas categorias. Se crearon modelos para "Clientes", "Empleados", 
 "Productos","Ventas" e "Inventario". De esta forma, se puede obtener una idea del concepto de la empresa. 
@@ -25,7 +28,7 @@ Uso recomendado del programa:
 
 --> 7. En la página vamos a acceder a la siguiente URL: Localhost/info_app/portada/ y nos va a dirigir a la página principal del proyecto. 
 
---> 8. Se recomienda previamente ver el siguiente video para conocer el uso y lógica de la página web. El link se encuentra en Youtube y es el siguiente:
+--> 8. Se recomienda previamente ver el siguiente video para conocer el uso y lógica de la página web. El link se encuentra en Youtube y es el siguiente: https://youtu.be/HbPNN7ST5ws
 
 --> 9. Para el inicio de la sesión sólo se encuentra creado el administrador (super usuario) como se muestra en el video. Igualmente se recomienda partir creando un usuario y asignandole permisos de staff para poder agregar datos a los modelos creados. Toda esta informacion y el paso a paso se muestra en el video. 
 
