@@ -53,31 +53,33 @@
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div class="container">    
                     <a class="navbar-brand" href="#page-top"><img src="{% static 'info_app/assets/icon.png' %}" alt="..." /></a>
+                    <a class="btn btn-primary" href="{% url 'about' %}"> Sobre mí </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
                         <i class="fas fa-bars ms-1"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                            {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'empleados' %}">Empleados</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}">Productos</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'ventas' %}">Ventas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'inventario' %}">Inventario</a></li>
-                            <!-- Dropdown for Formularios -->
+                            <li class="nav-item"><a class="nav-link" href="{% url 'inventario' %}">Inventario</a><
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Formularios
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{% url 'formulario_cliente' %}">Forms Cliente</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'formulario_empleado' %}">Forms Empleado</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'formulario_producto' %}">Forms Producto</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'formulario_venta' %}">Forms Venta</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'formulario_inventario' %}">Forms Inventario</a></li>
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Perfil</a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{% url 'ver_perfil' %}">Ver perfil</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar perfil</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'editar_password' %}">Cambiar contraseña</a></li>
                                 </ul>
-                            </li>
+                            <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                            {% else %}
+                            <li class="nav-item"><a class="btn btn-primary" href="{% url 'usercreate' %}">Registrarse</a></li>
+                            <li class="nav-item"><a class="btn btn-primary" href="{% url 'login' %}">Inicia sesión</a></li>                                
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -90,14 +92,12 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-subheading">¡Bienvenido a GlobalStore!</div>
-                <div class="masthead-heading text-uppercase">Todo en un solo lugar
-                </div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Quiero saber más</a>    
+                <div class="masthead-heading text-uppercase">Todo en un solo lugar</div>   
             </div>
         </header>
         
         {% block content %}
-            
+
         {% endblock content %}
 
         <!-- Footer-->
@@ -105,19 +105,11 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Derechos exclusivos: Arturo López</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Política de privacidad</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terminos y condiciones</a>
-                    </div>
+                    <div class="text-center mt-2">Copyright &copy; Derechos exclusivos: Arturo López</div>
                 </div>
             </div>
         </footer>
+
         <!-- Portfolio Modals-->
         <!-- Portfolio item 1 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">

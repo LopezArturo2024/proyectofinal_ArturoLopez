@@ -1,0 +1,24 @@
+{% extends 'info_app/base.html' %}
+
+
+{% block title %}
+Ver Producto - info_app
+{% endblock title %}
+
+{% block content %}
+    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
+        <div class="col-4">
+            <h3> Datos del producto: </h3><br>
+        </div>
+    </div><br>
+    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
+        <div class="row justify-content-center">
+            <li> El producto {{producto.nombre}}, pertenece a la categoria {{producto.categoria}} </li> 
+                <li>Su precio actual es: {{producto.precio}} </li> 
+                <li>{{producto.descripcion}} </li>
+        </div>
+    </div><br>
+    <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'productos' %}">Volver</a>
+        </div>
+{% endblock content %}

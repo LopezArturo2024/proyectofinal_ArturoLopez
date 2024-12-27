@@ -10,6 +10,13 @@ Empleados - info_app
 <br>
 <h1>Empleados registrados</h1>
 <br>
+{% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <p class="text-center mt-2 text-success"> {{ message }} </p>
+                {% endfor %}
+            </ul>
+{% endif %}
 <h5 class="text-center mt-2">Buscar empleado</h5>
 <!-- Formulario de búsqueda -->
 <div class="d-flex flex-column align-items-center mb-2">
@@ -27,6 +34,7 @@ Empleados - info_app
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Empleado</th>
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Cargo</th>
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Fecha contratación</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -36,10 +44,20 @@ Empleados - info_app
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.nombre }} {{ i.apellido }}</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.cargo }}</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.fecha_contrato }}</td>
+                <td>
+                    {% if user.is_superuser %}
+                        <a style="background-color:#495057;color: #dee2e6; padding: 10px; border: 1px solid #495057;" class="btn" href="{% url 'ver_empleado' i.id %}">Ver </a>
+                        <a style="background-color:#e0b61c;color: #dee2e6; padding: 10px; border: 1px solid #e0b61c;" class="btn" href="{% url 'editar_empleado' i.id %}">Editar </a>
+                        <a style="background-color:#ca2828;color: #dee2e6; padding: 10px; border: 1px solid #ca2828;" class="btn" href="{% url 'eliminar_empleado' i.id %}">Eliminar </a>
+                    {% else %}
+                        <a style="background-color:#495057;color: #dee2e6; padding: 10px; border: 1px solid #495057;" class="btn" href="{% url 'ver_empleado' i.id %}">Ver </a>
+                    {% endif %}
+                </td> 
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a class="btn btn-primary" href="{% url 'formulario_empleado' %}">Agregar nuevo empleado</a>
 </div>
 
 {% endblock content %}

@@ -10,6 +10,13 @@ Clientes - info_app
 <br>
 <h1>Clientes registrados</h1>
 <br>
+{% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <p class="text-center mt-2 text-success"> {{ message }} </p>
+                {% endfor %}
+            </ul>
+{% endif %}
 <h5 class="text-center mt-2">Buscar cliente</h5>
 <!-- Formulario de búsqueda -->
 <div class="d-flex flex-column align-items-center mb-2">
@@ -19,6 +26,7 @@ Clientes - info_app
 </form><br>
 
 <div class="container"></div>
+
     <table class="text-center mt-2 table" style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background-color: #495057; color: #000f; text-align: center;">
@@ -26,6 +34,7 @@ Clientes - info_app
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Cliente</th>
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Email</th>
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Segmento</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +43,22 @@ Clientes - info_app
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.id }}</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.nombre }} {{ i.apellido }}</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.email }}</td>
-                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.segmento }}</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.segmento }}</td>   
+                <td>
+                    {% if user.is_superuser %}
+                        <a style="background-color:#495057;color: #dee2e6; padding: 10px; border: 1px solid #495057;" class="btn" href="{% url 'ver_cliente' i.id %}">Ver </a>
+                        <a style="background-color:#e0b61c;color: #dee2e6; padding: 10px; border: 1px solid #e0b61c;" class="btn" href="{% url 'editar_cliente' i.id %}">Editar </a>
+                        <a style="background-color:#ca2828;color: #dee2e6; padding: 10px; border: 1px solid #ca2828;" class="btn" href="{% url 'eliminar_cliente' i.id %}">Eliminar </a>
+                    {% else %}
+                        <a style="background-color:#495057;color: #dee2e6; padding: 10px; border: 1px solid #495057;" class="btn" href="{% url 'ver_cliente' i.id %}">Ver </a>
+                    {% endif %}
+                </td> 
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a class="btn btn-primary" href="{% url 'formulario_cliente' %}">Agregar nuevo cliente</a>
 </div>
+
 
 {% endblock content %}

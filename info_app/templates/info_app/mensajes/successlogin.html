@@ -1,0 +1,15 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}
+Inicio de sesión - info_app
+{% endblock title %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="text-center" >
+        <h6 class="text-success">¡Inicio de sesión exitoso, bienvenido {{user.username}}!</h6>
+        <a class="btn btn-primary" href="{% url 'inicio' %}">Volver</a>    
+    </div>
+</div>
+
+{% endblock content %}

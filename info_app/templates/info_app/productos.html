@@ -8,8 +8,15 @@ Productos - info_app
 
 {% block content %}
 <br>
-<h1>Producto registrados</h1>
+<h1>Productos registrados</h1>
 <br>
+{% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <p class="text-center mt-2 text-success"> {{ message }} </p>
+                {% endfor %}
+            </ul>
+{% endif %}
 <h5 class="text-center mt-2">Buscar producto</h5>
 <!-- Formulario de búsqueda -->
 <div class="d-flex flex-column align-items-center mb-2">
@@ -27,6 +34,7 @@ Productos - info_app
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Nombre</th>
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Categoria</th>
                 <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Precio</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -36,10 +44,20 @@ Productos - info_app
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.nombre }}</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.categoria }}</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.precio }}</td>
+                <td>
+                    {% if user.is_superuser %}
+                        <a style="background-color:#495057;color: #dee2e6; padding: 10px; border: 1px solid #495057;" class="btn" href="{% url 'ver_producto' i.id %}">Ver </a>
+                        <a style="background-color:#e0b61c;color: #dee2e6; padding: 10px; border: 1px solid #e0b61c;" class="btn" href="{% url 'editar_producto' i.id %}">Editar </a>
+                        <a style="background-color:#ca2828;color: #dee2e6; padding: 10px; border: 1px solid #ca2828;" class="btn" href="{% url 'eliminar_producto' i.id %}">Eliminar </a>
+                    {% else %}
+                        <a style="background-color:#495057;color: #dee2e6; padding: 10px; border: 1px solid #495057;" class="btn" href="{% url 'ver_producto' i.id %}">Ver </a>
+                    {% endif %}
+                </td> 
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a class="btn btn-primary" href="{% url 'formulario_producto' %}">Agregar nuevo producto</a>
 </div>
 
 {% endblock content %}

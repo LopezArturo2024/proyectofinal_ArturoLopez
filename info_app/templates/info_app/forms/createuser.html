@@ -1,0 +1,30 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}
+Creación de usuario - info_app
+{% endblock title %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center" >
+        <div class="col-4">
+          <h2>¡Crea tu usuario!</h2><br>
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+                  <li class="text-danger"> {{ message }} </li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+            
+          <form action="" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary" >Crear usuario</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

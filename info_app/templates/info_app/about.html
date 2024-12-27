@@ -1,0 +1,27 @@
+{% extends 'info_app/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Sobre mí - info_app
+{% endblock title %}
+
+{% block content %}
+<section class="page-section bg-light" id="team" style="margin-top: 10px; padding-top: 0;"></section>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Comisión Python: 60090</h2>
+            <h3 class="section-subheading text-muted">Proyecto final</h3>
+        </div>
+        <div class="row">
+            <div class="text-center mt-2">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="{% static 'info_app/assets/img/team/ALCV.jpg' %}" alt="..." />
+                    <h4>Arturo López</h4>
+                    <p class="text-muted">Hola, ¡Bienvenido a mi página! Mi nombre es Arturo López y tengo 35 años.</p>
+                    <p class="text-muted">Soy una persona responsable, perfeccionista y creativa, apasionada por aprender y aplicar nuevos conocimientos. Disfruto de actividades como jugar fútbol, disfrutar un buen café y mantenerme activo haciendo ejercicio, ya que me ayudan a mantener un equilibrio entre lo personal y lo profesional. Lo que más me motiva en el desarrollo web es la posibilidad de crear cosas nuevas y convertir ideas en una página web que sea funcional y estética. Uno de mis mayores logros ha sido tomar la iniciativa de retomar mis estudios más allá de mi formación en ingeniería, lo que me ha permitido crecer y dar forma a proyectos únicos. Mi principal objetivo es desarrollar una página web que refleje mi estilo personal y todo lo aprendido en este curso.</p>
+                    <a class="btn btn-primary" href="{% url 'inicio' %}">Volver</a>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

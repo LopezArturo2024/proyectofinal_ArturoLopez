@@ -1,0 +1,22 @@
+{% extends 'info_app/base.html' %}
+
+{% block title %}
+Editar Empleado - info_app
+{% endblock title %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            
+
+          <form action="" method="POST">
+          {% csrf_token %}
+          {{ forms.as_p }}
+          <button type="submit" class="btn btn-primary">Editar empleado</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

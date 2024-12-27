@@ -1,0 +1,26 @@
+{% extends 'info_app/base.html' %}
+
+
+{% block title %}
+Ver Cliente - info_app
+{% endblock title %}
+
+{% block content %}
+    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
+        <div class="col-4">
+            <h3> Datos completos del cliente: </h3>
+        </div>
+    </div><br>
+
+    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
+        <div class="row justify-content-center">
+            <li>Su nombre completo es: {{cliente.nombre}} {{cliente.apellido}} </li> 
+                <li>El cliente reside en: {{cliente.pais}} </li> 
+                <li>Su número de teléfono es: {{cliente.telefono}} y su email: {{cliente.email}} </li>
+                <li>Pertenece al segmento de: {{cliente.segmento}} </li>
+        </div>
+    </div><br>
+    <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'clientes' %}">Volver</a>
+        </div>
+{% endblock content %}
