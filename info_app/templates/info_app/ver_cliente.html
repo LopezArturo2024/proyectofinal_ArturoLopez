@@ -1,26 +1,54 @@
 {% extends 'info_app/base.html' %}
 
+{% load static %}
 
 {% block title %}
 Ver Cliente - info_app
 {% endblock title %}
 
-{% block content %}
-    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
-        <div class="col-4">
-            <h3> Datos completos del cliente: </h3>
-        </div>
-    </div><br>
 
-    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
-        <div class="row justify-content-center">
-            <li>Su nombre completo es: {{cliente.nombre}} {{cliente.apellido}} </li> 
-                <li>El cliente reside en: {{cliente.pais}} </li> 
-                <li>Su número de teléfono es: {{cliente.telefono}} y su email: {{cliente.email}} </li>
-                <li>Pertenece al segmento de: {{cliente.segmento}} </li>
+
+{% block content %}
+<br>
+<div class="container my-4">
+    <!-- Imagen de cabecera -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 text-center">
+            <img 
+                src="{% static 'info_app/assets/img/clientes.jpg' %}" 
+                style="width: 600px; height: 300px; object-fit: cover;">
+                
         </div>
-    </div><br>
-    <div class="text-center">
-            <a class="btn btn-primary" href="{% url 'clientes' %}">Volver</a>
+    </div>
+
+    <!-- Título de la sección -->
+    <br>
+    <div class="text-center mb-4">
+        <h3 class="text-primary fw-bold">Datos del cliente</h3>
+    </div>
+
+    <!-- Información del cliente -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>Nombre completo:</strong> {{ cliente.nombre }} {{ cliente.apellido }}</li>
+                        <li><strong>Residencia:</strong> {{ cliente.pais }}</li>
+                        <li><strong>Teléfono:</strong> {{ cliente.telefono }}</li>
+                        <li><strong>Email:</strong> {{ cliente.email }}</li>
+                        <li><strong>Segmento:</strong> {{ cliente.segmento }}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="{% url 'clientes' %}">
+            Volver
+        </a>
+    </div>
+</div>
 {% endblock content %}

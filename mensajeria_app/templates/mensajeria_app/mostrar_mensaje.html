@@ -5,6 +5,8 @@ Mostrar mensajes - mensajeria_app
 {% endblock title %}
 
 {% block content %}
+<br>
+<h1 class="text-align"> Bandeja de entrada </h1><br>
 {% if messages %}
             <ul>
                 {% for message in messages %}
@@ -12,31 +14,36 @@ Mostrar mensajes - mensajeria_app
                 {% endfor %}
             </ul>
 {% endif %}
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Remitente</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for i in mensajes %}
-            {% if mensajes%}
-                <tr class="table"></tr>
-                <td>{{i.remitente}}</td>
-                <td>{{i.fecha_envio}}</td>
-                <td><a class="btn btn-primary" href="{% url 'ver_mensaje' i.id %}">Ver mensaje </a>
-                </td>
-            {% else %}
-                <p>No existe mensajes</p>                
-            {% endif %}
-                
-        {% endfor %}
-    </tbody>
-  </table>
 
-  <a class="btn btn-primary" href="{% url 'enviar_mensaje' %}">Enviar un nuevo mensaje </a>
+<div class="container"></div>
 
+    <table class="text-center mt-2 table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #495057; color: #000f; text-align: center;">
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">ID</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Remitente</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Fecha</th>
+                <th scope="col" style="padding: 10px; border: 1px solid #dee2e6;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in mensajes %}
+                {% if mensajes %}
+                <tr style="background-color: #ced4da; color: #000; text-align: center;">
+                    <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.id }}</td>
+                    <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.remitente }}</td>
+                    <td style="padding: 10px; border: 1px solid #dee2e6;">{{ i.fecha_envio }}</td>   
+                    <td><a class="btn btn-primary" href="{% url 'ver_mensaje' i.id %}">Ver mensaje </a>
+                {% else %}
+                    <p>No existe mensajes</p>       
+                {% endif %}
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="text-center">
+    <a class="btn btn-primary" href="{% url 'enviar_mensaje' %}">Enviar un nuevo mensaje </a>
+    </div>
 
 {% endblock content %}

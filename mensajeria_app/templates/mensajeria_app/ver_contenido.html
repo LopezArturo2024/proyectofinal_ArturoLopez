@@ -4,14 +4,31 @@
 Contenido del mensaje - mensajeria_app
 {% endblock title %}
 
+
+
 {% block content %}
-<div class="container my-2"></div>
+<div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col-4">
-            <p>El usuario {{contexto.remitente}}, te envió el siguiente mensaje el día {{contexto.fecha_envio}}:</p>
-            <p>{{contexto.contenido}}</p>
-            <a class="btn btn-primary" href="{% url 'mostrar_mensaje' %}">Volver </a> 
+        <div class="col-md-6">
+            <!-- Tarjeta del mensaje -->
+            <div class="card shadow-sm">
+                <div class="card-header text-white bg-primary">
+                    <h5 class="mb-0">Mensaje de {{ contexto.remitente }}</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Fecha del envío -->
+                    <p class="text-muted mb-2">
+                        <small>Enviado el: {{ contexto.fecha_envio }}</small>
+                    </p>
+                    <!-- Contenido del mensaje -->
+                    <p class="fs-5">{{ contexto.contenido }}</p>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'enviar_mensaje' %}" class="btn btn-primary">Responder</a>
+                    <a href="{% url 'mostrar_mensaje' %}" class="btn btn-primary">Volver</a>
+                </div>
+            </div>
         </div>
     </div>
-
+</div>
 {% endblock content %}

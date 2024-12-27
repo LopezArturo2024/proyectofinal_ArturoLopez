@@ -1,24 +1,54 @@
 {% extends 'info_app/base.html' %}
 
+{% load static %}
 
 {% block title %}
 Ver Producto - info_app
 {% endblock title %}
 
 {% block content %}
-    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
-        <div class="col-4">
-            <h3> Datos del producto: </h3><br>
+<br>
+<div class="container my-4"></div>
+    <!-- Imagen de cabecera -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 text-center">
+            <img 
+                src="{% static 'info_app/assets/img/productos.jpg' %}" 
+                style="width: 600px; height: 300px; object-fit: cover;">
+                
         </div>
-    </div><br>
-    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
-        <div class="row justify-content-center">
-            <li> El producto {{producto.nombre}}, pertenece a la categoria {{producto.categoria}} </li> 
-                <li>Su precio actual es: {{producto.precio}} </li> 
-                <li>{{producto.descripcion}} </li>
+    </div>
+
+    <!-- Título de la sección -->
+    <br>
+    <div class="text-center mb-4">
+        <h3 class="text-primary fw-bold">Datos del producto</h3>
+    </div>
+
+    <!-- Información del cliente -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>Nombre:</strong> {{producto.nombre}}</li>
+                        <li><strong>Categoría:</strong> {{ producto.categoria }}</li>
+                        <li><strong>Precio:</strong> {{ producto.precio }}</li>
+                        <li>----------------------------------------------------------------</li>
+                        <li><strong>Descripción:</strong><br> {{ producto.descripcion }}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div><br>
-    <div class="text-center">
-            <a class="btn btn-primary" href="{% url 'productos' %}">Volver</a>
-        </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="{% url 'productos' %}">
+            Volver
+        </a>
+    </div>
+</div>
+
+
 {% endblock content %}

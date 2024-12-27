@@ -7,10 +7,11 @@ Perfil - info_app
 {% endblock title %}
 
 {% block content %}
-<div class="container my-4"></div>
+<div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col-4">
-            <h2>Perfil de {{user.username}}</h2>
+        <div class="col-md-6 col-lg-4 text-center">
+            <h3 class="mb-4 text-primary">Perfil de {{ user.username }}</h3>
+
             {% if messages %}
             <ul>
                 {% for message in messages %}
@@ -18,12 +19,26 @@ Perfil - info_app
                 {% endfor %}
             </ul>
             {% endif %}
-            <img src="{{user.profile.photo.url}}"> <br>
-            <p>Nombre: {{user.first_name}} <br>
-                Apellido: {{user.last_name}} <br>
-                Email: {{user.email}} <br>
-            </p>
+
+
+            {% if user.profile.photo %}
+            <img 
+                src="{{ user.profile.photo.url }}" 
+                alt="Foto de perfil" 
+                style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"> <br>
+            {% else %}
+                <img src= "{% static 'info_app/assets/img/default-profile.jpg' %}"
+                alt="Foto default" 
+                style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"> <br>
+            {% endif %}       
+            
+            <div class="card shadow-sm p-4">
+                <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
         </div>
-    </div>
+    </div>     
+</div> 
 
 {% endblock content %}

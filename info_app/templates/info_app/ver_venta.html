@@ -1,24 +1,52 @@
 {% extends 'info_app/base.html' %}
 
+{% load static %}
 
 {% block title %}
 Ver Venta - info_app
 {% endblock title %}
 
 {% block content %}
-    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
-        <div class="col-4">
-            <h3> Datos de la orden de venta: </h3><br>
+<br>
+<div class="container my-4"></div>
+    <!-- Imagen de cabecera -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 text-center">
+            <img 
+                src="{% static 'info_app/assets/img/ventas.jpg' %}"  
+                style="width: 600px; height: 300px; object-fit: cover;">
+                
         </div>
-    </div><br>
-    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
-        <div class="row justify-content-center">
-            <li> La orden de venta {{venta.id}}, se generó en la fecha {{venta.fecha_venta}} </li> 
-                <li>El cliente que realizó la orden fue: {{venta.cliente}} </li> 
-                <li>El empleado que apoyó en la venta fue: {{venta.empleado}} </li>
+    </div>
+
+    <!-- Título de la sección -->
+    <br>
+    <div class="text-center mb-4">
+        <h3 class="text-primary fw-bold">Orden de Venta</h3>
+    </div>
+
+    <!-- Información del cliente -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>Número de orden de venta:</strong> {{venta.id}}</li>
+                        <li><strong>Fecha de la orden:</strong> {{ venta.fecha_venta }}</li>
+                        <li><strong>Cliente:</strong> {{ venta.cliente }}</li>
+                        <li><strong>Empleado a cargo:</strong> {{ venta.empleado }}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div><br>
-    <div class="text-center">
-            <a class="btn btn-primary" href="{% url 'ventas' %}">Volver</a>
-        </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="{% url 'ventas' %}">
+            Volver
+        </a>
+    </div>
+</div>
+
 {% endblock content %}

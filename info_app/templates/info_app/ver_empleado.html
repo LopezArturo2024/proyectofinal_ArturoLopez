@@ -1,25 +1,52 @@
 {% extends 'info_app/base.html' %}
 
+{% load static %}
 
 {% block title %}
 Ver Empleado - info_app
 {% endblock title %}
 
 {% block content %}
-    <div style="background-color: #495057; color: #ffffff; text-align: center;" class="row justify-content-center">
-        <div class="col-4">
-            <h3> Datos completos del empleado: </h3><br>
-            <h5> {{empleado.cargo}} </h5>
+<br>
+<div class="container my-4"></div>
+    <!-- Imagen de cabecera -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 text-center">
+            <img 
+                src="{% static 'info_app/assets/img/empleados.jpg' %}" 
+                style="width: 600px; height: 300px; object-fit: cover;">
+                
         </div>
-    </div><br>
-    <div style="background-color: #ced4da; color: #000; text-align: center;" class="row justify-content-center">
-        <div class="row justify-content-center">
-            <li>Su nombre completo es: {{empleado.nombre}} {{empleado.apellido}} </li> 
-                <li>Trabaja para la empresa desde la fecha: {{empleado.fecha_contrato}} </li> 
-                <li>Su número de teléfono es: {{empleado.telefono}} y su email: {{empleado.email}} </li>
+    </div>
+
+    <!-- Título de la sección -->
+    <br>
+    <div class="text-center mb-4">
+        <h3 class="text-primary fw-bold">Datos del empleado</h3>
+    </div>
+
+    <!-- Información del cliente -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>Nombre completo:</strong> {{empleado.nombre}} {{empleado.apellido}}</li>
+                        <li><strong>Cargo:</strong> {{ empleado.cargo }}</li>
+                        <li><strong>Fecha de contratación:</strong> {{ empleado.fecha_contrato }}</li>
+                        <li><strong>Teléfono:</strong> {{ empleado.telefono }}</li>
+                        <li><strong>Email:</strong> {{ empleado.email }}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div><br>
-    <div class="text-center">
-            <a class="btn btn-primary" href="{% url 'empleados' %}">Volver</a>
-        </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="{% url 'empleados' %}">
+            Volver
+        </a>
+    </div>
+</div>
 {% endblock content %}

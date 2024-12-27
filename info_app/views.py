@@ -446,7 +446,7 @@ def user_login(request):
         return render(request,"info_app/forms/login.html")
 
 
-
+@login_required(login_url='login')
 def user_logout(request):
     logout(request)
     return redirect ('login')
